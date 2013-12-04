@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+        <h:outputStylesheet library="default" name="css/bootstrap.css"/>
+        <h:outputScript library="default" name="js/bootstrap.js"/>
+        <style>
+            body{
+                padding-top:80px;
+            }
+            div.ui-growl-item-container{
+                margin-top:60px;
+            }
+            .h1{
+                font-size:24px;
+                font-weight: bold;
+            }
+        </style>
+        <ui:insert name="head">
+
+        </ui:insert>
+        <title>Online Bookstore</title>
+    </h:head>
+    <h:body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Online&nbsp;Bookstore</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <!-- if the user is logged in-->
+                    <li><a href="Shop">Shop!</a></li>
+                    <li><a href="Shop?a=viewCart">View Cart</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Admin?a=view">Manage Books</a></li>
+                        </ul>
+                    </li>
+                    <!-- endif -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown">Account <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <!-- if the user is logged in -->
+                            <li><a href="Account?a=logout">Log Out</a></li>
+                            <!-- else -->
+                            <li><a href="Account?a=login">Log In</a></li>
+                            <li><a href="Account?a=register">Register</a></li>
+                            <!-- endif-->
+
+                        </ul>
+                    </li>
+                    <!-- if user is logged in -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><p>Welcome, ${user.getUsername()}</p></li>
+                    </ul>
+                    <!-- endif -->
+                </ul>
+            </div>
+        </div>
+
+        <div id="content" class="container">
+
+            <ui:insert name="content"></ui:insert>
+
+
+            <div class="row">
+                <ui:insert name="bottom"></ui:insert>
+            </div>
+        </div>
+
+
+
+    </h:body>
+
+</html>

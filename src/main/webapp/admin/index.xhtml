@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../siteTemplate.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+    <ui:define name="content">
+        <h:outputText value="Manage Books" styleClass="h1 text-center"/>
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>  
+
+            <p:dataTable var="book" value="#{bookBean.getAllBooks()}" id="bookList" editable="true">
+                <p:ajax event="rowEdit" listener="#{bookBean.onEdit}" update=":form:bookList,:form:messages" />  
+                <p:ajax event="rowEditCancel" listener="#{bookBean.onCancel}" update=":form:messages" />  
+
+                <p:column headerText="Name">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{book.name}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{book.name}" style="width:100%"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>
+
+                <p:column headerText="Price">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{book.price}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{book.price}" style="width:100%"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Author">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{book.author}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{book.author}" style="width:100%"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Description">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{book.description}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{book.description}" style="width:100%"/>  
+                        </f:facet>  
+                    </p:cellEditor>
+                </p:column>  
+
+                <p:column headerText="Thumbnail Path">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{book.thumbnailPath}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{book.thumbnailPath}" style="width:100%"/>  
+                        </f:facet>  
+                    </p:cellEditor>
+                </p:column>  
+
+                <p:column headerText="Image Path">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{book.imagePath}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{book.imagePath}" style="width:100%"/>  
+                        </f:facet>  
+                    </p:cellEditor>
+                </p:column>  
+
+
+                <p:column style="width:6%">  
+                    <p:rowEditor />  
+                </p:column>  
+            </p:dataTable>
+
+            
+            
+        </h:form>
+
+
+        <h:form id="createForm">
+            
+            <p:dialog header="Create New Book" widgetVar="dlg" resizable="false">
+                <h:panelGrid columns="2" style="margin-bottom:10px">  
+                    <h:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{bookBean.newBook.name}" />
+                    <h:outputLabel for="price" value="Price:" />
+                    <p:inputText id="price" value="#{bookBean.newBook.price}" />
+                    <h:outputLabel for="description" value="Description:" />
+                    <p:inputText id="description" value="#{bookBean.newBook.description}" />
+                    <h:outputLabel for="thumbnailPathPath" value="Thumbnail Path:" />
+                    <p:inputText id="thumbnailPathPath" value="#{bookBean.newBook.thumbnailPath}" />
+                    <h:outputLabel for="imagePath" value="Image Path:" />
+                    <p:inputText id="imagePath" value="#{bookBean.newBook.imagePath}" />
+                </h:panelGrid>
+                <f:facet name="footer">  
+                    <p:commandButton id="createButton" value="Create"  
+                                     actionListener="#{bookBean.createNewBook}"
+                                     update=":form:bookList"
+                                     oncomplete="PF('dlg').hide();"
+                                     />  
+                </f:facet>
+
+
+
+            </p:dialog>
+            <p:commandButton id="showDialogButton" type="button" value="Create New Book" onclick="PF('dlg').show()" />  
+        </h:form>
+    </ui:define>
+
+</ui:composition>
