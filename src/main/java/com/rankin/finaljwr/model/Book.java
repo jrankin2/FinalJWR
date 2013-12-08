@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
     @NamedQuery(name = "Book.findById", query = "SELECT b FROM Book b WHERE b.id = :id"),
-    @NamedQuery(name = "Book.findByName", query = "SELECT b FROM Book b WHERE b.name = :name"),
+    @NamedQuery(name = "Book.findByName", query = "SELECT b FROM Book b WHERE b.name LIKE :name"),
     @NamedQuery(name = "Book.findByPrice", query = "SELECT b FROM Book b WHERE b.price = :price"),
     @NamedQuery(name = "Book.findByDescription", query = "SELECT b FROM Book b WHERE b.description = :description"),
     @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
@@ -142,9 +142,18 @@ public class Book implements Serializable {
         return true;
     }
 
+    /*
     @Override
     public String toString() {
-        return "com.rankin.finaljwr.models.Book[ id=" + id + " ]";
+    return "com.rankin.finaljwr.models.Book[ id=" + id + " ]";
     }
+     */
+    @Override
+    public String toString() {
+        return "Book{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", author=" + author + ", imagePath=" + imagePath + ", thumbnailPath=" + thumbnailPath + '}';
+    }
+    
+    
+    
     
 }

@@ -27,6 +27,9 @@ public class BookBean implements Serializable {
     private BookFacade bookFacade;
     private int selectedItemIndex;
     private List<Book> books;
+    
+    private String searchTerm;
+    private List<Book> searchResults;
 
     public BookBean() {
     }
@@ -69,7 +72,7 @@ public class BookBean implements Serializable {
     
     public void onCancel(RowEditEvent event) {
         
-    } 
+    }
     
     public void createNewBook(ActionEvent actionEvent){
         bookFacade.create(newBook);
@@ -84,5 +87,28 @@ public class BookBean implements Serializable {
         this.newBook = newBook;
     }
     
-    
+    public void search(){
+        searchResults = bookFacade.searchByName(searchTerm);
+        for (Book book : searchResults) {
+            System.out.println("bean result: " + book);
+        }
+        
+        System.out.println(searchResults);
+    }
+
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
+    }
+
+    public List<Book> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<Book> searchResults) {
+        this.searchResults = searchResults;
+    }
 }

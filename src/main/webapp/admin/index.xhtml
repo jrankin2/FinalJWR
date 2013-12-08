@@ -97,18 +97,18 @@
         <h:form id="createForm">
             
             <p:dialog header="Create New Book" widgetVar="dlg" resizable="false">
-                <h:panelGrid columns="2" style="margin-bottom:10px">  
-                    <h:outputLabel for="name" value="Name:" />
+                <p:panelGrid columns="2" style="margin-bottom:10px">  
+                    <p:outputLabel for="name" value="Name:" />
                     <p:inputText id="name" value="#{bookBean.newBook.name}" />
-                    <h:outputLabel for="price" value="Price:" />
+                    <p:outputLabel for="price" value="Price:" />
                     <p:inputText id="price" value="#{bookBean.newBook.price}" />
-                    <h:outputLabel for="description" value="Description:" />
+                    <p:outputLabel for="description" value="Description:" />
                     <p:inputText id="description" value="#{bookBean.newBook.description}" />
-                    <h:outputLabel for="thumbnailPathPath" value="Thumbnail Path:" />
+                    <p:outputLabel for="thumbnailPathPath" value="Thumbnail Path:" />
                     <p:inputText id="thumbnailPathPath" value="#{bookBean.newBook.thumbnailPath}" />
-                    <h:outputLabel for="imagePath" value="Image Path:" />
+                    <p:outputLabel for="imagePath" value="Image Path:" />
                     <p:inputText id="imagePath" value="#{bookBean.newBook.imagePath}" />
-                </h:panelGrid>
+                </p:panelGrid>
                 <f:facet name="footer">  
                     <p:commandButton id="createButton" value="Create"  
                                      actionListener="#{bookBean.createNewBook}"

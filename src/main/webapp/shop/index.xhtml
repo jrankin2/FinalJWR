@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../siteTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:pt="http://java.sun.com/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="head">
+        <style>
+            .bookGrid{
+                width:100%;
+                float:left;
+                border:1px solid;
+                border-color:#C4C4C4;
+                margin-bottom:20px;
+            }
+            .bookGrid tr, .bookGrid td {
+                border: none !important;
+            }
+            
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="jumbotron">
+            <h1>Book Search</h1>
+            <p class="lead">Search for your favorite books!</p>
+            <h:form id="searchForm">
+                <h:inputText id="search" class="input-lg" pt:placeholder="Book Title" value="#{bookBean.searchTerm}"/>
+                <h:commandButton class="btn btn-primary btn-lg" value="Search!" actionListener="#{bookBean.search}"/>
+            </h:form>
+        </div>
+
+        <!-- search results -->
+
+        <c:forEach items="#{bookBean.searchResults}" var="book">
+            <p:panelGrid styleClass="bookGrid">
+                <f:facet name="header">
+                    <p:row><p:column colspan="3">${book.name}</p:column></p:row>
+                </f:facet>
+                <p:row>
+                    <p:column rowspan="3">
+                        <h:graphicImage library="default" name="${book.thumbnailPath}"/>
+                    </p:column>
+                </p:row>
+                <p:row>
+                    <p:column><h:outputText value="Author: ${book.author}"/></p:column>
+                    <p:column><h:commandButton value="Add To Cart" class="btn btn-success btn-cart"/></p:column>
+                </p:row>
+                <p:row>
+                    <p:column><h:outputText value="Price: ${book.price}" /></p:column>
+                    <p:column><h:commandButton value="More Details..." class="btn btn-primary btn-details"/></p:column>
+                    
+                </p:row>
+                
+                
+                
+                
+            </p:panelGrid>
+        </c:forEach>
+
+
+        <div class="modal modal-dialog">
+
+        </div>
+    </ui:define>
+
+    <ui:insert name="bottom"/>
+
+</ui:composition>
