@@ -35,6 +35,7 @@
         </div>
 
         <!-- search results -->
+        <!--
         <h:form>
             <ui:repeat value="#{bookBean.searchResults}" var="book">
 
@@ -50,7 +51,7 @@
                     <p:row>
                         <p:column><p:outputLabel value="Author: ${book.author}"/></p:column>
                         <p:column>
-                            <p:commandButton value="Add To Cart" styleClass="btn btn-cart" action="#{bookBean.testShit}" />
+                            <p:commandButton value="Add To Cart" styleClass="btn btn-cart" action="#{cartBean.testIt()}" />
                         </p:column>
                     </p:row>
                     <p:row>
@@ -59,29 +60,57 @@
                     </p:row>
                 </p:panelGrid>
             </ui:repeat>
-            
-            
+
+
+        </h:form>
+        -->
+
+        <h:form id="form">
+            <p:growl id="messages" showDetail="true"/>  
+
+            <p:dataTable var="book" value="#{bookBean.searchResults}" id="bookList">
+                <p:column headerText="Name"> 
+                    <h:outputText value="#{book.name}" /> 
+                </p:column>
+
+                <p:column headerText="Price">  
+                    <h:outputText value="#{book.price}" />
+                </p:column>  
+
+                <p:column headerText="Author">  
+                    <h:outputText value="#{book.author}" />  
+                </p:column>  
+
+                <p:column>
+                    <p:commandLink value="Add to Cart" action="#{cartBean.addBook(book.id)}"/>
+                </p:column>  
+            </p:dataTable>
+
         </h:form>
 
-        
-        
-        
-        <ui:repeat value="#{bookBean.searchResults}" var="book">
-            #{book.id}
-            <h:form>
-                <p:commandButton value="${book.id}" styleClass="btn btn-cart" ajax="false" actionListener="#{cartBean.testShit()}" >
-                </p:commandButton>
-            </h:form>
-            
-        </ui:repeat>
-        
-        
-        <h:form>
-                <p:commandButton value="Addasdfasfdbvzasxc" styleClass="btn btn-cart" action="${bookBean.testShit}" />
-            </h:form>
-        
-    </ui:define>
 
-    <ui:insert name="bottom"/>
+
+
+<!--
+        <h:form>
+            <c:forEach items="#{bookBean.searchResults}" var="book">
+                <p:commandLink value="asdfa12342sdf" action="/login.xhtml" />
+            </c:forEach>
+        </h:form>
+
+
+
+        <h:form>
+            <ui:repeat value="#{bookBean.searchResults}" var="book">
+
+                <p:commandLink value="asdfasdf" styleClass="btn btn-cart" action="/login.xhtml" />
+            </ui:repeat>
+        </h:form>
+
+        <h:form>
+            <p:commandButton value="Addasdfasfdbvzasxc" styleClass="btn btn-cart" action="/login.xhtml" />
+        </h:form>
+-->
+    </ui:define>
 
 </ui:composition>

@@ -112,7 +112,7 @@ public class BookBean implements Serializable {
         this.searchResults = searchResults;
     }
     
-    public void testShit(){
+    public void testIt(){
         System.out.println("sadl;fkjasldfkjasdf\nalsdjkfl;sakjdfl\nasdf\n");
     }
 }

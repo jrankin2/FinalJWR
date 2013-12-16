@@ -8,7 +8,9 @@ package com.rankin.finaljwr.bean;
 
 import com.rankin.finaljwr.model.Book;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -32,6 +34,7 @@ public class CartBean implements Serializable{
     private int selectedBookId;
     
     public CartBean(){
+        cart = new HashMap<Book, Integer>();
     }
     
     @PostConstruct
@@ -43,12 +46,28 @@ public class CartBean implements Serializable{
      * Add a book to the shopping cart.
      * @param book a book
      */
+    /*
     public void addBook(Book book) {
+        System.out.println("asdlfkjasdf\nasdfasdf\nasdfasdf\n");
         if(cart.containsKey(book)){
             cart.put(book, cart.get(book)+1);
         }else{
             cart.put(book, 1);
         }
+    }*/
+    
+    public void addBook(int bookId) {
+        System.out.println("asdlfkjasdf\nasdfasdf\nasdfasdf\n");
+        Book book = bookFacade.find(bookId);
+        if(cart.containsKey(book)){
+            cart.put(book, cart.get(book)+1);
+        }else{
+            cart.put(book, 1);
+        }
+    }
+    
+    public List<Book> getBookList(){
+        return new ArrayList<Book>(cart.keySet());
     }
 
     /**
@@ -143,7 +162,8 @@ public class CartBean implements Serializable{
         this.selectedBookId = selectedBookId;
     }
     
-    public void testShit(){
+    public String testIt(){
         System.out.println("asddjalsdkasfdvasdfg\n\n\n\n\n\n\n\nasdfgasdfasdfg");
+        return "/login.xhtml";
     }
 }
