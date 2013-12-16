@@ -33,11 +33,6 @@ public class BookFacade extends AbstractFacade<Book> {
         Query query = em.createNamedQuery("Book.findByName");
         query.setParameter("name", "%" +name + "%");
         List<Book> results = query.getResultList();
-        for (Book book : results) {
-            System.out.println("bookfacade result: " + book);
-        }
-        
-        
         return results;
     }
     

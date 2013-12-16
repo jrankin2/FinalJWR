@@ -20,7 +20,7 @@
             .bookGrid tr, .bookGrid td {
                 border: none !important;
             }
-            
+
         </style>
     </ui:define>
 
@@ -29,43 +29,57 @@
             <h1>Book Search</h1>
             <p class="lead">Search for your favorite books!</p>
             <h:form id="searchForm">
-                <h:inputText id="search" class="input-lg" pt:placeholder="Book Title" value="#{bookBean.searchTerm}"/>
-                <h:commandButton class="btn btn-primary btn-lg" value="Search!" actionListener="#{bookBean.search}"/>
+                <h:inputText id="search" styleClass="input-lg" pt:placeholder="Book Title" value="#{bookBean.searchTerm}"/>
+                <h:commandButton styleClass="btn btn-primary btn-lg" value="Search!" actionListener="#{bookBean.search}"/>
             </h:form>
         </div>
 
         <!-- search results -->
+        <h:form>
+            <ui:repeat value="#{bookBean.searchResults}" var="book">
 
-        <c:forEach items="#{bookBean.searchResults}" var="book">
-            <p:panelGrid styleClass="bookGrid">
-                <f:facet name="header">
-                    <p:row><p:column colspan="3">${book.name}</p:column></p:row>
-                </f:facet>
-                <p:row>
-                    <p:column rowspan="3">
-                        <h:graphicImage library="default" name="${book.thumbnailPath}"/>
-                    </p:column>
-                </p:row>
-                <p:row>
-                    <p:column><h:outputText value="Author: ${book.author}"/></p:column>
-                    <p:column><h:commandButton value="Add To Cart" class="btn btn-success btn-cart"/></p:column>
-                </p:row>
-                <p:row>
-                    <p:column><h:outputText value="Price: ${book.price}" /></p:column>
-                    <p:column><h:commandButton value="More Details..." class="btn btn-primary btn-details"/></p:column>
-                    
-                </p:row>
-                
-                
-                
-                
-            </p:panelGrid>
-        </c:forEach>
+                <p:panelGrid styleClass="bookGrid">
+                    <f:facet name="header">
+                        <p:row><p:column colspan="3">${book.name}</p:column></p:row>
+                    </f:facet>
+                    <p:row>
+                        <p:column rowspan="3">
+                            <h:graphicImage library="default" name="${book.thumbnailPath}"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><p:outputLabel value="Author: ${book.author}"/></p:column>
+                        <p:column>
+                            <p:commandButton value="Add To Cart" styleClass="btn btn-cart" action="#{bookBean.testShit}" />
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column><p:outputLabel value="Price: ${book.price}" /></p:column>
+                        <p:column><p:commandButton value="More Details..." styleClass="btn btn-details"/></p:column>
+                    </p:row>
+                </p:panelGrid>
+            </ui:repeat>
+            
+            
+        </h:form>
 
-
-        <div class="modal modal-dialog">
-
-        </div>
+        
+        
+        
+        <ui:repeat value="#{bookBean.searchResults}" var="book">
+            #{book.id}
+            <h:form>
+                <p:commandButton value="${book.id}" styleClass="btn btn-cart" ajax="false" actionListener="#{cartBean.testShit()}" >
+                </p:commandButton>
+            </h:form>
+            
+        </ui:repeat>
+        
+        
+        <h:form>
+                <p:commandButton value="Addasdfasfdbvzasxc" styleClass="btn btn-cart" action="${bookBean.testShit}" />
+            </h:form>
+        
     </ui:define>
 
     <ui:insert name="bottom"/>

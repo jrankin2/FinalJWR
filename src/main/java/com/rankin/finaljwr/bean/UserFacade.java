@@ -10,6 +10,7 @@ import com.rankin.finaljwr.model.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,13 @@ public class UserFacade extends AbstractFacade<User> {
 
     public UserFacade() {
         super(User.class);
+    }
+    
+    public User getByUsername(String username){
+        Query query = em.createNamedQuery("User.findByUsername");
+        query.setParameter("username", username);
+        User result = (User) query.getSingleResult();
+        return result;
     }
     
 }

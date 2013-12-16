@@ -74,7 +74,7 @@ public class BookBean implements Serializable {
         
     }
     
-    public void createNewBook(ActionEvent actionEvent){
+    public void createBook(ActionEvent actionEvent){
         bookFacade.create(newBook);
         books = bookFacade.findAll();
     }
@@ -110,5 +110,9 @@ public class BookBean implements Serializable {
 
     public void setSearchResults(List<Book> searchResults) {
         this.searchResults = searchResults;
+    }
+    
+    public void testShit(){
+        System.out.println("sadl;fkjasldfkjasdf\nalsdjkfl;sakjdfl\nasdf\n");
     }
 }

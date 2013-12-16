@@ -1,11 +1,12 @@
 package com.rankin.finaljwr.bean;
 
-import com.rankin.finaljwr.model.LoginModel;
 import com.rankin.finaljwr.model.User;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 @Named
@@ -14,7 +15,6 @@ public class UserBean implements Serializable {
     @EJB
     private UserFacade userFacade;
     private User loggedInUser;
-    private LoginModel login;
     private User newUser;
 
     public UserBean() {
@@ -23,28 +23,28 @@ public class UserBean implements Serializable {
     
     @PostConstruct
     public void init(){
-        login = new LoginModel();
         newUser = new User();
     }
     
-    private UserFacade getFacade() {
-        return userFacade;
-    }
     
-    private void logIn(){
-        
-        
-    }
-    
-    private void register(){
+    public String registerUser(){
+        userFacade.create(newUser);
+        loggedInUser = newUser;
+        return "/shop/index";
     }
 
-    public void setLogin(LoginModel login) {
-        this.login = login;
+    public String logOut(){
+        loggedInUser = null;
+        return "/account/login";
+    }
+    
+    
+    public User getNewUser() {
+        return newUser;
     }
 
-    public LoginModel getLogin() {
-        return login;
+    public void setNewUser(User newUser) {
+        this.newUser = newUser;
     }
 
 }

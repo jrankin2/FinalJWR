@@ -3,10 +3,15 @@
     xmlns="http://xmlns.jcp.org/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <!-- for spring security -->
+    <lifecycle>
+        <phase-listener>edu.wctc.maven.glassfish.jsfsecure.util.LoginErrorPhaseListener</phase-listener>
+    </lifecycle>
     <application>
         <resource-bundle>
-            <base-name>/Bundle</base-name>
-            <var>bundle</var>
+            <base-name>/test2</base-name>
+            <var>test2</var>
         </resource-bundle>
     </application>
 </faces-config>

@@ -11,18 +11,25 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
  *
  * @author Joe
  */
-@SessionScoped
+@RequestScoped
 @Named
 public class CartBean implements Serializable{
     
+    @Inject
+    private BookFacade bookFacade;
+    
     private Map<Book, Integer> cart;
+    private Book selectedBook;
+    private int selectedBookId;
     
     public CartBean(){
     }
@@ -115,5 +122,28 @@ public class CartBean implements Serializable{
                 }
             }
         }
+    }
+
+    public Book getSelectedBook() {
+        return selectedBook;
+    }
+
+    public void putSelectedBook(int bookId) {
+        Book book = bookFacade.find(bookId);
+        System.out.println("\n\n\n\n\n\n\n\nSelected book: ");
+        this.selectedBook = book;
+    }
+
+    public int getSelectedBookId() {
+        return selectedBookId;
+    }
+
+    public void setSelectedBookId(int selectedBookId) {
+        System.out.println("1\n2\n3\n4\n");
+        this.selectedBookId = selectedBookId;
+    }
+    
+    public void testShit(){
+        System.out.println("asddjalsdkasfdvasdfg\n\n\n\n\n\n\n\nasdfgasdfasdfg");
     }
 }

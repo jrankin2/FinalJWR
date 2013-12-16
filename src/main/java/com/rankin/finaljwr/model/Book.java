@@ -142,12 +142,6 @@ public class Book implements Serializable {
         return true;
     }
 
-    /*
-    @Override
-    public String toString() {
-    return "com.rankin.finaljwr.models.Book[ id=" + id + " ]";
-    }
-     */
     @Override
     public String toString() {
         return "Book{" + "id=" + id + ", name=" + name + ", price=" + price + ", description=" + description + ", author=" + author + ", imagePath=" + imagePath + ", thumbnailPath=" + thumbnailPath + '}';
