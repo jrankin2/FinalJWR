@@ -29,92 +29,93 @@
     </ui:define>
 
     <ui:define name="content">
-        <div class="jumbotron">
-            <h1>Book Search</h1>
-            <p class="lead">Search for your favorite books!</p>
-            <h:form id="searchForm">
+        <h:form id="searchForm">
+            <div class="jumbotron">
+                <h1>Book Search</h1>
+                <p class="lead">Search for your favorite books!</p>
+
                 <h:inputText id="search" styleClass="input-lg" pt:placeholder="Book Title" value="#{bookBean.searchTerm}"/>
                 <h:commandButton styleClass="btn btn-primary btn-lg" value="Search!" actionListener="#{bookBean.search}"/>
+
+            </div>
+
+            <!-- search results -->
+            <!--
+            <h:form>
+                <ui:repeat value="#{bookBean.searchResults}" var="book">
+    
+                    <p:panelGrid styleClass="bookGrid">
+                        <f:facet name="header">
+                            <p:row><p:column colspan="3">${book.name}</p:column></p:row>
+                        </f:facet>
+                        <p:row>
+                            <p:column rowspan="3">
+                                <h:graphicImage library="default" name="${book.thumbnailPath}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column><p:outputLabel value="Author: ${book.author}"/></p:column>
+                            <p:column>
+                                <p:commandButton value="Add To Cart" styleClass="btn btn-cart" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column><p:outputLabel value="Price: ${book.price}" /></p:column>
+                            <p:column><p:commandButton value="More Details..." styleClass="btn btn-details"/></p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </ui:repeat>
+    
+    
             </h:form>
-        </div>
+            -->
 
-        <!-- search results -->
+            <!--<h:form id="form">-->
+                <p:growl id="messages" showDetail="true"/>  
+
+                <p:dataTable var="book" value="#{bookBean.searchResults}" id="bookList">
+                    <p:column headerText="Name"> 
+                        <h:outputText value="#{book.name}" /> 
+                    </p:column>
+
+                    <p:column headerText="Price">  
+                        <h:outputText value="#{book.price}" />
+                    </p:column>  
+
+                    <p:column headerText="Author">  
+                        <h:outputText value="#{book.author}" />  
+                    </p:column>  
+
+                    <p:column>
+                        <p:commandLink value="Add to Cart" action="#{cartBean.addBook(book.id)}"/>
+                    </p:column>  
+                </p:dataTable>
+
+            <!--</h:form>-->
+
+        </h:form>
+
+
         <!--
-        <h:form>
-            <ui:repeat value="#{bookBean.searchResults}" var="book">
-
-                <p:panelGrid styleClass="bookGrid">
-                    <f:facet name="header">
-                        <p:row><p:column colspan="3">${book.name}</p:column></p:row>
-                    </f:facet>
-                    <p:row>
-                        <p:column rowspan="3">
-                            <h:graphicImage library="default" name="${book.thumbnailPath}"/>
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column><p:outputLabel value="Author: ${book.author}"/></p:column>
-                        <p:column>
-                            <p:commandButton value="Add To Cart" styleClass="btn btn-cart" action="#{cartBean.testIt()}" />
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column><p:outputLabel value="Price: ${book.price}" /></p:column>
-                        <p:column><p:commandButton value="More Details..." styleClass="btn btn-details"/></p:column>
-                    </p:row>
-                </p:panelGrid>
-            </ui:repeat>
-
-
-        </h:form>
+                <h:form>
+                    <c:forEach items="#{bookBean.searchResults}" var="book">
+                        <p:commandLink value="asdfa12342sdf" action="/login.xhtml" />
+                    </c:forEach>
+                </h:form>
+        
+        
+        
+                <h:form>
+                    <ui:repeat value="#{bookBean.searchResults}" var="book">
+        
+                        <p:commandLink value="asdfasdf" styleClass="btn btn-cart" action="/login.xhtml" />
+                    </ui:repeat>
+                </h:form>
+        
+                <h:form>
+                    <p:commandButton value="Addasdfasfdbvzasxc" styleClass="btn btn-cart" action="/login.xhtml" />
+                </h:form>
         -->
-
-        <h:form id="form">
-            <p:growl id="messages" showDetail="true"/>  
-
-            <p:dataTable var="book" value="#{bookBean.searchResults}" id="bookList">
-                <p:column headerText="Name"> 
-                    <h:outputText value="#{book.name}" /> 
-                </p:column>
-
-                <p:column headerText="Price">  
-                    <h:outputText value="#{book.price}" />
-                </p:column>  
-
-                <p:column headerText="Author">  
-                    <h:outputText value="#{book.author}" />  
-                </p:column>  
-
-                <p:column>
-                    <p:commandLink value="Add to Cart" action="#{cartBean.addBook(book.id)}"/>
-                </p:column>  
-            </p:dataTable>
-
-        </h:form>
-
-
-
-
-<!--
-        <h:form>
-            <c:forEach items="#{bookBean.searchResults}" var="book">
-                <p:commandLink value="asdfa12342sdf" action="/login.xhtml" />
-            </c:forEach>
-        </h:form>
-
-
-
-        <h:form>
-            <ui:repeat value="#{bookBean.searchResults}" var="book">
-
-                <p:commandLink value="asdfasdf" styleClass="btn btn-cart" action="/login.xhtml" />
-            </ui:repeat>
-        </h:form>
-
-        <h:form>
-            <p:commandButton value="Addasdfasfdbvzasxc" styleClass="btn btn-cart" action="/login.xhtml" />
-        </h:form>
--->
     </ui:define>
 
 </ui:composition>
