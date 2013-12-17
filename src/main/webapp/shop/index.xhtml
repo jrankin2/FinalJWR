@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="./../siteTemplate.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:pt="http://java.sun.com/jsf/passthrough"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./../siteTemplate.xhtml"
+                >
 
     <ui:define name="head">
         <style>
@@ -19,6 +20,9 @@
             }
             .bookGrid tr, .bookGrid td {
                 border: none !important;
+            }
+            .jumbotron{
+                text-align:center;
             }
 
         </style>

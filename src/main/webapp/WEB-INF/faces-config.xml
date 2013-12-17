@@ -9,9 +9,5 @@
         <phase-listener>edu.wctc.maven.glassfish.jsfsecure.util.LoginErrorPhaseListener</phase-listener>
     </lifecycle>
     <application>
-        <resource-bundle>
-            <base-name>/test2</base-name>
-            <var>test2</var>
-        </resource-bundle>
     </application>
 </faces-config>
